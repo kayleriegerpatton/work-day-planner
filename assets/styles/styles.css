@@ -8,15 +8,16 @@ body {
 .display-3 {
   font-family: "Birthstone", cursive;
   font-size: 4rem;
-  margin-top: 15px;
 }
 
 .jumbotron {
   text-align: center;
-  background-color: transparent;
+  /* background-color: transparent; */
+  background-color: #fdc99f;
   color: black;
   border-radius: 0;
   border-bottom: 10px solid black;
+  padding-top: 5px;
   margin-bottom: 5px;
 }
 
