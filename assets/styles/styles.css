@@ -1,16 +1,14 @@
 body {
   font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  line-height: 1;
+  font-size: 18px;
+  line-height: 1.2;
+  margin: 0;
 }
 
-textarea {
-  background: transparent;
-  border: none;
-  resize: none;
-  color: #000000;
-  border-left: 1px solid black;
-  padding: 10px;
+.display-3 {
+  font-family: "Birthstone", cursive;
+  font-size: 4rem;
+  margin-top: 15px;
 }
 
 .jumbotron {
@@ -21,48 +19,68 @@ textarea {
   border-bottom: 10px solid black;
 }
 
+.container {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr 10fr 1fr;
+  gap: 5px;
+}
+
+textarea {
+  background: transparent;
+  /* border: none; */
+  /* color: #000000; */
+  /* border-left: 1px solid black; */
+  /* padding: 10px; */
+  border-radius: 10px;
+}
+
 .description {
-  white-space: pre-wrap;
+  #ffffff-space: normal;
 }
 
 .time-block {
+  display: flex;
+  /* flex-direction: row; */
   text-align: center;
   border-radius: 15px;
 }
 
 .row {
-  white-space: pre-wrap;
+  #ffffff-space: pre-wrap;
   height: 80px;
-  border-top: 1px solid white;
+  border-top: 1px solid #ffffff;
 }
 
 .hour {
+  font-size: 20px;
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
 }
 
 .past {
-  background-color: #d3d3d3;
-  color: white;
+  background-color: #b8f2e6;
+  color: #ffffff;
 }
 
 .present {
-  background-color: #ff6961;
-  color: white;
+  background-color: #5accb5;
+  color: #ffffff;
 }
 
 .future {
-  background-color: #77dd77;
-  color: white;
+  background-color: #23a38a;
+  color: #ffffff;
 }
 
 .saveBtn {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  background-color: #06aed5;
-  color: white;
+  border-radius: 5px 25px 15px;
+  background-color: #f75555;
+  color: #ffffff;
+  font-weight: 700;
 }
 
 .saveBtn i:hover {
