@@ -17,6 +17,7 @@ body {
   color: black;
   border-radius: 0;
   border-bottom: 10px solid black;
+  margin-bottom: 5px;
 }
 
 .container {
@@ -53,7 +54,7 @@ textarea {
 }
 
 .hour {
-  font-size: 20px;
+  font-size: 1.2rem;
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
