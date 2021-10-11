@@ -1,4 +1,6 @@
+// TARGET HTML ELEMENTS
 const dateContainer = $("#currentDay");
+const timeBlockContainer = $(".container");
 
 // render date and time display
 const onReady = function () {
@@ -13,6 +15,13 @@ const onReady = function () {
 
 const renderTimeBlocks = function () {
   console.log("time blocks rendered");
+  const timeBlockHour = $("<h2 class='hour'>09:00 AM</h2>");
+  const timeBlockTextarea = $(
+    "<textarea class='' name='' id='' cols='30' rows='1'></textarea>"
+  );
+  const timeBlockSave = $("<button class='saveBtn'>Save</button>");
+
+  timeBlockContainer.append(timeBlockHour, timeBlockTextarea, timeBlockSave);
 };
 
 // on load:
