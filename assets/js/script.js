@@ -2,13 +2,12 @@
 const dateContainer = $("#currentDay");
 const timeBlockContainer = $(".container");
 const currentHour = moment().hour();
-console.log(currentHour);
 
 // render date and time display
-const onReady = function () {
+const renderDateTime = function () {
   const timerTick = function () {
     const dateTime = moment();
-    const dateTimeFormatted = dateTime.format("dddd, MMM Do YYYY, h:mm a");
+    const dateTimeFormatted = dateTime.format("dddd, MMM Do YYYY, k:mm a");
 
     dateContainer.text(dateTimeFormatted);
   };
@@ -34,21 +33,20 @@ const renderTimeBlocks = function () {
 
   // get text of time blocks hours
   const timeBlockHour = $("#spanHour").text();
-  console.log(timeBlockHour);
-  if (timeBlockHour == currentHour) {
-    console.log("Event is now!");
-  }
-};
 
-const setStyles = function () {
-  // if timeBlockHour.text === currentHour then set class to present
-  if (timeBlockHour == currentHour) {
-    console.log("Event is now!");
-    // if timeBlockHour.text < currentHour then set class to past
-  } else if (timeBlockHour < currentHour) {
-    // if timeBlockHour.text > currentHour then set class to future
-  } else {
-  }
+  const setStyles = function () {
+    // if timeBlockHour.text === currentHour then set class to present
+    if (timeBlockHour == currentHour) {
+      console.log("Event is now!");
+      // if timeBlockHour.text < currentHour then set class to past
+    } else if (timeBlockHour < currentHour) {
+      console.log("event is past");
+
+      // if timeBlockHour.text > currentHour then set class to future
+    } else {
+      console.log("event is upcoming");
+    }
+  };
 };
 
 // on save click handler
@@ -69,5 +67,6 @@ const saveEvent = function (event) {
 
 // click event on save button (use target and event capturing)
 $(timeBlockContainer).on("click", saveEvent);
-$(document).ready(onReady);
+$(document).ready(renderDateTime);
 $(document).ready(renderTimeBlocks);
+// $(document).ready(setStyles);
