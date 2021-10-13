@@ -12,7 +12,6 @@ body {
 
 .jumbotron {
   text-align: center;
-  /* background-color: transparent; */
   background-color: #fdc99f;
   color: black;
   border-radius: 0;
@@ -63,17 +62,14 @@ textarea {
 
 .past {
   background-color: #b8f2e6;
-  color: #ffffff;
 }
 
 .present {
   background-color: #5accb5;
-  color: #ffffff;
 }
 
 .future {
   background-color: #23a38a;
-  color: #ffffff;
 }
 
 .saveBtn {
