@@ -1,5 +1,6 @@
 // TARGET HTML ELEMENTS
 const dateContainer = $("#currentDay");
+const timeContainer = $("#currentTime");
 const timeBlockContainer = $(".container");
 const currentHour = moment().hour();
 
@@ -7,9 +8,11 @@ const currentHour = moment().hour();
 const renderDateTime = function () {
   const timerTick = function () {
     const dateTime = moment();
-    const dateTimeFormatted = dateTime.format("dddd, MMM Do YYYY, k:mm a");
+    const dateTimeFormatted = dateTime.format("dddd, MMM Do YYYY");
+    const timeFormatted = dateTime.format("k:mm a");
 
     dateContainer.text(dateTimeFormatted);
+    timeContainer.text(timeFormatted);
   };
   const timer = setInterval(timerTick, 1000);
 };
