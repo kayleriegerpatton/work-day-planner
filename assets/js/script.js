@@ -69,24 +69,21 @@ const saveEvent = function (event) {
   let eventHour = userClicked;
 
   // create event object for LS
-  let eventDetails = {
-    hour: eventHour,
-    description: eventDescription,
-  };
-  console.log(eventDetails);
+  //   let eventDetails = {
+  //     hour: eventHour,
+  //     description: eventDescription,
+  //   };
 
   //   get from LS
-  const eventDetailsFromLS = JSON.parse(localStorage.getItem("eventTimeDesc"));
+  const eventDetailsFromLS = JSON.parse(localStorage.getItem("9"));
   if (!eventDetailsFromLS) {
-    // declare data for LS
-    const eventInfo = [eventDetails];
+    console.log("storage empty");
 
     // set in LS
-    localStorage.setItem("eventTimeDesc", JSON.stringify(eventInfo));
+    localStorage.setItem("9", JSON.stringify(eventDescription));
   } else {
-    const myEventArray = eventDetailsFromLS;
-    // push new data into array
-    myEventArray.push(eventDetails);
+    // set data in LS
+    localStorage.setItem("9", JSON.stringify(eventDescription));
   }
 };
 
