@@ -2,7 +2,36 @@
 const dateContainer = $("#currentDay");
 const timeContainer = $("#currentTime");
 const timeBlockContainer = $("#container");
+const timeBlockDiv = $(".timeblock");
 const currentHour = moment().hour();
+
+// set key/value pairs for LS
+const timeBlocks = [
+  { hour: "09:00", localStorageKey: 9 },
+  { hour: "10:00", localStorageKey: 10 },
+  { hour: "11:00", localStorageKey: 11 },
+  { hour: "12:00", localStorageKey: 12 },
+  { hour: "13:00", localStorageKey: 13 },
+  { hour: "14:00", localStorageKey: 14 },
+  { hour: "15:00", localStorageKey: 15 },
+  { hour: "16:00", localStorageKey: 16 },
+  { hour: "17:00", localStorageKey: 17 },
+];
+
+const onReady = function () {
+  initializeLS();
+  renderDateTime();
+  renderTimeBlocks();
+};
+//  get from local storage
+const initializeLS = function () {
+  //   get from LS
+  const eventDetailsFromLS = JSON.parse(localStorage.getItem("eventDetails"));
+  if (!eventDetailsFromLS) {
+    // set in LS
+    localStorage.setItem("eventDetails", JSON.stringify({}));
+  }
+};
 
 // render date and time display
 const renderDateTime = function () {
@@ -18,28 +47,28 @@ const renderDateTime = function () {
   setInterval(timerTick, 1000);
 };
 
-//  get from local storage
-
-// set key/value pairs for LS
-const timeBlocks = [
-  { hour: "09:00", localStorageKey: 9 },
-  { hour: "10:00", localStorageKey: 10 },
-  { hour: "11:00", localStorageKey: 11 },
-  { hour: "12:00", localStorageKey: 12 },
-  { hour: "13:00", localStorageKey: 13 },
-  { hour: "14:00", localStorageKey: 14 },
-  { hour: "15:00", localStorageKey: 15 },
-  { hour: "16:00", localStorageKey: 16 },
-  { hour: "17:00", localStorageKey: 17 },
-];
-
 const getClassName = function (localStorageKey) {
-  return "present";
+  // get data from LS
+  const eventDetailsFromLS = JSON.parse(localStorage.getItem(localStorageKey));
+
+  // if greater, set class to past
+  if (currentHour > localStorageKey) {
+    return "past";
+    // if less than, set class to future
+  } else if (currentHour < localStorageKey) {
+    return "future";
+  }
 };
 
 const getEventText = function (localStorageKey) {
   //   get data from LS
+  const eventDetailsFromLS = JSON.parse(localStorage.getItem(localStorageKey));
+  //   console.log(eventDetailsFromLS);
+
   // check if LS object contains LS key
+  //   if (){
+
+  //   }
   // if doesn't exist, return empty string
   // else return object value
   return "foo bar";
@@ -59,7 +88,7 @@ const constructTimeBlock = function (eachTimeBlock) {
   const buttonID = eachTimeBlock.localStorageKey;
 
   // construct timeblock elements
-  const timeBlockElement = ` <div class="timeblock">
+  const timeBlockElement = `<div class="timeblock">
 <h2 class="hour">${timeLabel}</h2>
 <textarea class=${className}>${eventText}</textarea>
 <button class="saveBtn" id="${buttonID}">Save</button>
@@ -78,48 +107,33 @@ const renderTimeBlocks = function () {
 
 // on save get/set storage
 const saveEvent = function (event) {
-  //   declare timeBlockContainer current target
+  //   declare timeblockdiv current target
   const currentTarget = event.currentTarget;
   // declare .saveBtn target
   const target = event.target;
 
-  const userClicked = $(target).attr();
-  console.log(userClicked);
-  //   if clicked on saveBtn, run
-  // if () {
+  const userClicked = $(target).attr("id");
+
   //   get textarea input value (event details)
   let eventDescription = $(target).prev().val();
 
-  //   get event time from saveBtn data-attribute
-  let eventHour = userClicked;
+  //   get event time from saveBtn id
+  let eventHour = JSON.parse(userClicked);
 
-  //   get from LS
-  const eventDetailsFromLS = JSON.parse(localStorage.getItem(eventHour));
-  if (!eventDetailsFromLS) {
-    // set in LS
-    localStorage.setItem(eventHour, JSON.stringify(eventDescription));
-  } else {
-    // set data in LS
-    localStorage.setItem(eventHour, JSON.stringify(eventDescription));
+  //   if clicked on saveBtn, run
+  if ($.isNumeric(eventHour)) {
+    //   get from LS
+    const eventDetailsFromLS = JSON.parse(localStorage.getItem(eventHour));
+    if (!eventDetailsFromLS) {
+      // set in LS
+      localStorage.setItem(eventHour, JSON.stringify(eventDescription));
+    } else {
+      // set data in LS
+      localStorage.setItem(eventHour, JSON.stringify(eventDescription));
+    }
   }
-  // }
-};
-
-const initializeLS = function () {
-  //   get from LS
-  const eventDetailsFromLS = JSON.parse(localStorage.getItem("eventDetails"));
-  if (!eventDetailsFromLS) {
-    // set in LS
-    localStorage.setItem("eventDetails", JSON.stringify({}));
-  }
-};
-
-const onReady = function () {
-  initializeLS();
-  renderDateTime();
-  renderTimeBlocks();
 };
 
 // EVENT LISTENERS
-$(timeBlockContainer).on("click", saveEvent);
 $(document).ready(onReady);
+$(timeBlockContainer).on("click", saveEvent);
