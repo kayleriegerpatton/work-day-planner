@@ -20,7 +20,7 @@ const renderDateTime = function () {
 // render timeblocks and text content (forEach through LS array to set content?)
 const renderTimeBlocks = function () {
   const timeBlock = $(
-    '<h2 class="hour"><span id="spanHour">14</span>:00</h2><textarea class="" name="" id="" cols="30" rows="1"></textarea><button class="saveBtn" type="submit" data-save="" >Save</button> <h2 class="hour"><span id="spanHour">10</span>:00</h2><textarea class="" name="" id="" cols="30" rows="1"></textarea><button class="saveBtn" type ="submit" data-save="" >Save</button>'
+    '<h2 class="hour"><span id="spanHour">14</span>:00</h2><textarea class="past" name="" id="" cols="30" rows="1"></textarea><button class="saveBtn" type="submit" data-save="" >Save</button> <h2 class="hour"><span id="spanHour">10</span>:00</h2><textarea class="past" name="" id="" cols="30" rows="1"></textarea><button class="saveBtn" type ="submit" data-save="" >Save</button>'
   );
   //   loop through key/value pairs to assign content:
   //        spanHour=key
@@ -49,7 +49,7 @@ const renderTimeBlocks = function () {
   };
 };
 
-// on save click handler
+// on save
 const saveEvent = function (event) {
   //   declare timeBlockContainer current target
   const currentTarget = event.currentTarget;
@@ -57,10 +57,11 @@ const saveEvent = function (event) {
   const target = event.target;
 
   const userClicked = $(target).attr("data-save");
-
+  console.log(userClicked);
   // LOCAL STORAGE
   //   get textarea input value (event details)
   let eventDetails = $(target).prev().val();
+  console.log(eventDetails);
 
   //   set to LS
 };
@@ -69,4 +70,3 @@ const saveEvent = function (event) {
 $(timeBlockContainer).on("click", saveEvent);
 $(document).ready(renderDateTime);
 $(document).ready(renderTimeBlocks);
-// $(document).ready(setStyles);
