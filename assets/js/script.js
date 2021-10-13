@@ -1,7 +1,7 @@
 // TARGET HTML ELEMENTS
 const dateContainer = $("#currentDay");
 const timeContainer = $("#currentTime");
-const timeBlockContainer = $(".container");
+const timeBlockContainer = $("#container");
 const currentHour = moment().hour();
 
 // render date and time display
@@ -19,42 +19,10 @@ const renderDateTime = function () {
 };
 
 //  get from local storage
-//   set key/value pairs into an array?
 
-// render timeblocks and text content (forEach through LS array to set content?)
-const renderTimeBlocks = function () {
-  const timeBlock = $(
-    '<h2 class="hour"><span id="spanHour">14</span>:00</h2><textarea class="past" name="" id="" cols="30" rows="1"></textarea><button class="saveBtn" type="submit" data-save="14" >Save</button> <h2 class="hour"><span id="spanHour">10</span>:00</h2><textarea class="past" name="" id="" cols="30" rows="1"></textarea><button class="saveBtn" type ="submit" data-save="10" >Save</button>'
-  );
-  //   loop through key/value pairs to assign content:
-  //        spanHour=key
-  //        textarea id=key
-  //        textarea content=value
-  //        saveBtn data-save=key
-
-  // append to main container
-  timeBlockContainer.append(timeBlock);
-
-  // get text of time blocks hours
-  const timeBlockHour = $("#spanHour").text();
-
-  //   const setStyles = function () {
-  //     // if timeBlockHour.text === currentHour then set class to present
-  //     if (timeBlockHour == currentHour) {
-  //       console.log("Event is now!");
-  //       // if timeBlockHour.text < currentHour then set class to past
-  //     } else if (timeBlockHour < currentHour) {
-  //       console.log("event is past");
-
-  //       // if timeBlockHour.text > currentHour then set class to future
-  //     } else {
-  //       console.log("event is upcoming");
-  //     }
-  //   };
-};
-
-const timeBlockValuesArray = [
-  { hour: "9:00", localStorageKey: 9 },
+// set key/value pairs for LS
+const timeBlocks = [
+  { hour: "09:00", localStorageKey: 9 },
   { hour: "10:00", localStorageKey: 10 },
   { hour: "11:00", localStorageKey: 11 },
   { hour: "12:00", localStorageKey: 12 },
@@ -65,6 +33,49 @@ const timeBlockValuesArray = [
   { hour: "17:00", localStorageKey: 17 },
 ];
 
+const getClassName = function (localStorageKey) {
+  return "present";
+};
+
+const getEventText = function (localStorageKey) {
+  //   get data from LS
+  // check if LS object contains LS key
+  // if doesn't exist, return empty string
+  // else return object value
+  return "foo bar";
+};
+
+const constructTimeBlock = function (eachTimeBlock) {
+  // get CSS color
+  const className = getClassName(eachTimeBlock.localStorageKey);
+
+  // get textarea text
+  const eventText = getEventText(eachTimeBlock.localStorageKey);
+
+  // get time label
+  const timeLabel = eachTimeBlock.hour;
+
+  //   get saveBtn id
+  const buttonID = eachTimeBlock.localStorageKey;
+
+  // construct timeblock elements
+  const timeBlockElement = ` <div class="timeblock">
+<h2 class="hour">${timeLabel}</h2>
+<textarea class=${className}>${eventText}</textarea>
+<button class="saveBtn" id="${buttonID}">Save</button>
+</div>`;
+
+  return timeBlockElement;
+};
+
+const renderTimeBlocks = function () {
+  // map through key/value pairs array to construct timeblocks
+  const timeBlockElements = timeBlocks.map(constructTimeBlock).join("");
+
+  // append to main container
+  timeBlockContainer.append(timeBlockElements);
+};
+
 // on save get/set storage
 const saveEvent = function (event) {
   //   declare timeBlockContainer current target
@@ -72,29 +83,39 @@ const saveEvent = function (event) {
   // declare .saveBtn target
   const target = event.target;
 
-  const userClicked = $(target).attr("data-save");
-
+  const userClicked = $(target).attr();
+  console.log(userClicked);
   //   if clicked on saveBtn, run
-  //   if () {
-  //     //   get textarea input value (event details)
-  //     let eventDescription = $(target).prev().val();
+  // if () {
+  //   get textarea input value (event details)
+  let eventDescription = $(target).prev().val();
 
-  //     //   get event time from saveBtn data-attribute
-  //     let eventHour = userClicked;
+  //   get event time from saveBtn data-attribute
+  let eventHour = userClicked;
 
-  //     //   get from LS
-  //     const eventDetailsFromLS = JSON.parse(localStorage.getItem(eventHour));
-  //     if (!eventDetailsFromLS) {
-  //       // set in LS
-  //       localStorage.setItem(eventHour, JSON.stringify(eventDescription));
-  //     } else {
-  //       // set data in LS
-  //       localStorage.setItem(eventHour, JSON.stringify(eventDescription));
-  //     }
-  //   }
+  //   get from LS
+  const eventDetailsFromLS = JSON.parse(localStorage.getItem(eventHour));
+  if (!eventDetailsFromLS) {
+    // set in LS
+    localStorage.setItem(eventHour, JSON.stringify(eventDescription));
+  } else {
+    // set data in LS
+    localStorage.setItem(eventHour, JSON.stringify(eventDescription));
+  }
+  // }
+};
+
+const initializeLS = function () {
+  //   get from LS
+  const eventDetailsFromLS = JSON.parse(localStorage.getItem("eventDetails"));
+  if (!eventDetailsFromLS) {
+    // set in LS
+    localStorage.setItem("eventDetails", JSON.stringify({}));
+  }
 };
 
 const onReady = function () {
+  initializeLS();
   renderDateTime();
   renderTimeBlocks();
 };
