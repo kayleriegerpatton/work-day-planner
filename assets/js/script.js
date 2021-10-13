@@ -9,12 +9,13 @@ const renderDateTime = function () {
   const timerTick = function () {
     const dateTime = moment();
     const dateTimeFormatted = dateTime.format("dddd, MMM Do YYYY");
-    const timeFormatted = dateTime.format("k:mm a");
+    const timeFormatted = dateTime.format("k:mm:ss");
 
     dateContainer.text(dateTimeFormatted);
     timeContainer.text(timeFormatted);
   };
-  const timer = setInterval(timerTick, 1000);
+  timerTick();
+  setInterval(timerTick, 1000);
 };
 
 //  get from local storage
@@ -37,20 +38,32 @@ const renderTimeBlocks = function () {
   // get text of time blocks hours
   const timeBlockHour = $("#spanHour").text();
 
-  const setStyles = function () {
-    // if timeBlockHour.text === currentHour then set class to present
-    if (timeBlockHour == currentHour) {
-      console.log("Event is now!");
-      // if timeBlockHour.text < currentHour then set class to past
-    } else if (timeBlockHour < currentHour) {
-      console.log("event is past");
+  //   const setStyles = function () {
+  //     // if timeBlockHour.text === currentHour then set class to present
+  //     if (timeBlockHour == currentHour) {
+  //       console.log("Event is now!");
+  //       // if timeBlockHour.text < currentHour then set class to past
+  //     } else if (timeBlockHour < currentHour) {
+  //       console.log("event is past");
 
-      // if timeBlockHour.text > currentHour then set class to future
-    } else {
-      console.log("event is upcoming");
-    }
-  };
+  //       // if timeBlockHour.text > currentHour then set class to future
+  //     } else {
+  //       console.log("event is upcoming");
+  //     }
+  //   };
 };
+
+const timeBlockValuesArray = [
+  { hour: "9:00", localStorageKey: 9 },
+  { hour: "10:00", localStorageKey: 10 },
+  { hour: "11:00", localStorageKey: 11 },
+  { hour: "12:00", localStorageKey: 12 },
+  { hour: "13:00", localStorageKey: 13 },
+  { hour: "14:00", localStorageKey: 14 },
+  { hour: "15:00", localStorageKey: 15 },
+  { hour: "16:00", localStorageKey: 16 },
+  { hour: "17:00", localStorageKey: 17 },
+];
 
 // on save get/set storage
 const saveEvent = function (event) {
@@ -61,31 +74,31 @@ const saveEvent = function (event) {
 
   const userClicked = $(target).attr("data-save");
 
-  // LOCAL STORAGE
-  //   get textarea input value (event details)
-  let eventDescription = $(target).prev().val();
+  //   if clicked on saveBtn, run
+  //   if () {
+  //     //   get textarea input value (event details)
+  //     let eventDescription = $(target).prev().val();
 
-  //   get event time from saveBtn data-attribute
-  let eventHour = userClicked;
+  //     //   get event time from saveBtn data-attribute
+  //     let eventHour = userClicked;
 
-  // create event object for LS
-  //   let eventDetails = {
-  //     hour: eventHour,
-  //     description: eventDescription,
-  //   };
+  //     //   get from LS
+  //     const eventDetailsFromLS = JSON.parse(localStorage.getItem(eventHour));
+  //     if (!eventDetailsFromLS) {
+  //       // set in LS
+  //       localStorage.setItem(eventHour, JSON.stringify(eventDescription));
+  //     } else {
+  //       // set data in LS
+  //       localStorage.setItem(eventHour, JSON.stringify(eventDescription));
+  //     }
+  //   }
+};
 
-  //   get from LS
-  const eventDetailsFromLS = JSON.parse(localStorage.getItem(eventHour));
-  if (!eventDetailsFromLS) {
-    // set in LS
-    localStorage.setItem(eventHour, JSON.stringify(eventDescription));
-  } else {
-    // set data in LS
-    localStorage.setItem(eventHour, JSON.stringify(eventDescription));
-  }
+const onReady = function () {
+  renderDateTime();
+  renderTimeBlocks();
 };
 
 // EVENT LISTENERS
 $(timeBlockContainer).on("click", saveEvent);
-$(document).ready(renderDateTime);
-$(document).ready(renderTimeBlocks);
+$(document).ready(onReady);
