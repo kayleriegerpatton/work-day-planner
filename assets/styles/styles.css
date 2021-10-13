@@ -20,12 +20,17 @@ body {
   margin-bottom: 5px;
 }
 
+#container {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
 .timeblock {
   display: grid;
   /* height: 100vh; */
   grid-template-columns: 1fr 10fr 1fr;
   gap: 10px;
-  padding: 5px;
+  padding: 3px;
 }
 
 textarea {
@@ -36,23 +41,6 @@ textarea {
   /* padding: 10px; */
   border-radius: 10px;
 }
-
-/* .description {
-  #ffffff-space: normal;
-} */
-
-/* .time-block {
-  display: flex;
-  /* flex-direction: row; */
-/* text-align: center;
-  border-radius: 15px;
-} */
-
-/* .row {
-  #ffffff-space: pre-wrap;
-  height: 80px;
-  border-top: 1px solid #ffffff;
-} */
 
 .hour {
   font-size: 1.2rem;
@@ -74,7 +62,7 @@ textarea {
 }
 
 .saveBtn {
-  border-left: 1px solid black;
+  border-left: 1px solid #fa3e3e;
   border-top-right-radius: 15px;
   border-radius: 5px 25px 15px;
   background-color: #f75555;
