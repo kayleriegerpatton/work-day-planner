@@ -23,7 +23,7 @@ const renderDateTime = function () {
 // render timeblocks and text content (forEach through LS array to set content?)
 const renderTimeBlocks = function () {
   const timeBlock = $(
-    '<h2 class="hour"><span id="spanHour">14</span>:00</h2><textarea class="past" name="" id="" cols="30" rows="1"></textarea><button class="saveBtn" type="submit" data-save="" >Save</button> <h2 class="hour"><span id="spanHour">10</span>:00</h2><textarea class="past" name="" id="" cols="30" rows="1"></textarea><button class="saveBtn" type ="submit" data-save="" >Save</button>'
+    '<h2 class="hour"><span id="spanHour">14</span>:00</h2><textarea class="past" name="" id="" cols="30" rows="1"></textarea><button class="saveBtn" type="submit" data-save="14" >Save</button> <h2 class="hour"><span id="spanHour">10</span>:00</h2><textarea class="past" name="" id="" cols="30" rows="1"></textarea><button class="saveBtn" type ="submit" data-save="10" >Save</button>'
   );
   //   loop through key/value pairs to assign content:
   //        spanHour=key
@@ -52,7 +52,7 @@ const renderTimeBlocks = function () {
   };
 };
 
-// on save
+// on save get/set storage
 const saveEvent = function (event) {
   //   declare timeBlockContainer current target
   const currentTarget = event.currentTarget;
@@ -60,16 +60,37 @@ const saveEvent = function (event) {
   const target = event.target;
 
   const userClicked = $(target).attr("data-save");
-  console.log(userClicked);
+
   // LOCAL STORAGE
   //   get textarea input value (event details)
-  let eventDetails = $(target).prev().val();
+  let eventDescription = $(target).prev().val();
+
+  //   get event time from saveBtn data-attribute
+  let eventHour = userClicked;
+
+  // create event object for LS
+  let eventDetails = {
+    hour: eventHour,
+    description: eventDescription,
+  };
   console.log(eventDetails);
 
-  //   set to LS
+  //   get from LS
+  const eventDetailsFromLS = JSON.parse(localStorage.getItem("eventTimeDesc"));
+  if (!eventDetailsFromLS) {
+    // declare data for LS
+    const eventInfo = [eventDetails];
+
+    // set in LS
+    localStorage.setItem("eventTimeDesc", JSON.stringify(eventInfo));
+  } else {
+    const myEventArray = eventDetailsFromLS;
+    // push new data into array
+    myEventArray.push(eventDetails);
+  }
 };
 
-// click event on save button (use target and event capturing)
+// EVENT LISTENERS
 $(timeBlockContainer).on("click", saveEvent);
 $(document).ready(renderDateTime);
 $(document).ready(renderTimeBlocks);
