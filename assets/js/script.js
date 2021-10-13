@@ -66,12 +66,14 @@ const getEventText = function (localStorageKey) {
   //   console.log(eventDetailsFromLS);
 
   // check if LS object contains LS key
-  //   if (){
 
-  //   }
-  // if doesn't exist, return empty string
-  // else return object value
-  return "foo bar";
+  if (eventDetailsFromLS === null) {
+    // if doesn't exist, return empty string
+    return "";
+  } else {
+    // else return object value
+    return eventDetailsFromLS;
+  }
 };
 
 const constructTimeBlock = function (eachTimeBlock) {
