@@ -75,15 +75,13 @@ const saveEvent = function (event) {
   //   };
 
   //   get from LS
-  const eventDetailsFromLS = JSON.parse(localStorage.getItem("9"));
+  const eventDetailsFromLS = JSON.parse(localStorage.getItem(eventHour));
   if (!eventDetailsFromLS) {
-    console.log("storage empty");
-
     // set in LS
-    localStorage.setItem("9", JSON.stringify(eventDescription));
+    localStorage.setItem(eventHour, JSON.stringify(eventDescription));
   } else {
     // set data in LS
-    localStorage.setItem("9", JSON.stringify(eventDescription));
+    localStorage.setItem(eventHour, JSON.stringify(eventDescription));
   }
 };
 
