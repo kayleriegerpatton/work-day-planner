@@ -57,6 +57,8 @@ const getClassName = function (localStorageKey) {
     // if less than, set class to future
   } else if (currentHour < localStorageKey) {
     return "future";
+  } else {
+    return "present";
   }
 };
 
