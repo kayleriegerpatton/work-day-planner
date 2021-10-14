@@ -1,6 +1,6 @@
-# Work Day Planner
+# Day Planner
 
-To help manage time effectively, this work day planner displays the current day's events, indicating whether they have already past, are currently happening, or are scheduled for later that day. Each newly entered event, when saved, will display in the appropriate timeblock and remain in local storage.
+To help manage time effectively, this responsive planner application displays the current day's events, indicating whether they have already occurred, are currently happening, or are scheduled for later that day. Each newly entered event, when saved, will display in the appropriate time block and remain in local storage.
 
 ## Deployed Application
 
