@@ -65,7 +65,6 @@ const getClassName = function (localStorageKey) {
 const getEventText = function (localStorageKey) {
   //   get data from LS
   const eventDetailsFromLS = JSON.parse(localStorage.getItem(localStorageKey));
-  //   console.log(eventDetailsFromLS);
 
   // check if LS object contains LS key
 
@@ -102,7 +101,7 @@ const constructTimeBlock = function (eachTimeBlock) {
 };
 
 const renderTimeBlocks = function () {
-  // map through key/value pairs array to construct timeblocks
+  // map through key/value pairs array to construct time blocks
   const timeBlockElements = timeBlocks.map(constructTimeBlock).join("");
 
   // append to main container
@@ -113,6 +112,7 @@ const renderTimeBlocks = function () {
 const saveEvent = function (event) {
   //   declare timeblockdiv current target
   const currentTarget = event.currentTarget;
+
   // declare .saveBtn target
   const target = event.target;
 
@@ -121,11 +121,11 @@ const saveEvent = function (event) {
   //   get textarea input value (event details)
   let eventDescription = $(target).prev().val();
 
-  //   get event time from saveBtn id
-  let eventHour = JSON.parse(userClicked);
+  // if userclicked is a savebtn, then set to LS
+  if ($.isNumeric(userClicked)) {
+    JSON.parse(userClicked);
+    let eventHour = JSON.parse(userClicked);
 
-  //   if clicked on saveBtn, run
-  if ($.isNumeric(eventHour)) {
     //   get from LS
     const eventDetailsFromLS = JSON.parse(localStorage.getItem(eventHour));
     if (!eventDetailsFromLS) {
