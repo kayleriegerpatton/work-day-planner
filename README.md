@@ -19,7 +19,7 @@ WHEN the user clicks into a time block
 THEN they are able to type their event details
 
 WHEN the user clicks the time block's corresponding "Save" button  
-THEN the event text is saved in local storage
+THEN that event's text is saved in local storage
 
 WHEN the user refreshes the browser page  
 THEN the saved events remain in the time blocks
@@ -29,7 +29,7 @@ THEN the saved events remain in the time blocks
 - CSS
 - HTML
 - JavaScript
-- jQuery
-- Moment.js
 
 ## Screenshot
+
+![Day planner with color-coded event time blocks and descriptions](assets/images/screenshots/day-planner-screenshot.png)
