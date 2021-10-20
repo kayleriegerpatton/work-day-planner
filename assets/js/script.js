@@ -18,13 +18,13 @@ const timeBlocks = [
   { hour: "17:00", localStorageKey: 17 },
 ];
 
-const onReady = function () {
+const onReady = () => {
   initializeLS();
   renderDateTime();
   renderTimeBlocks();
 };
 //  get from local storage
-const initializeLS = function () {
+const initializeLS = () => {
   //   get from LS
   const eventDetailsFromLS = JSON.parse(localStorage.getItem("eventDetails"));
   if (!eventDetailsFromLS) {
@@ -34,7 +34,7 @@ const initializeLS = function () {
 };
 
 // render date and time display
-const renderDateTime = function () {
+const renderDateTime = () => {
   const timerTick = function () {
     const dateTime = moment();
     const dateTimeFormatted = dateTime.format("dddd, MMM Do YYYY");
@@ -47,7 +47,7 @@ const renderDateTime = function () {
   setInterval(timerTick, 1000);
 };
 
-const getClassName = function (localStorageKey) {
+const getClassName = (localStorageKey) => {
   // get data from LS
   const eventDetailsFromLS = JSON.parse(localStorage.getItem(localStorageKey));
 
@@ -62,7 +62,7 @@ const getClassName = function (localStorageKey) {
   }
 };
 
-const getEventText = function (localStorageKey) {
+const getEventText = (localStorageKey) => {
   //   get data from LS
   const eventDetailsFromLS = JSON.parse(localStorage.getItem(localStorageKey));
 
@@ -77,7 +77,7 @@ const getEventText = function (localStorageKey) {
   }
 };
 
-const constructTimeBlock = function (eachTimeBlock) {
+const constructTimeBlock = (eachTimeBlock) => {
   // get CSS color
   const className = getClassName(eachTimeBlock.localStorageKey);
 
@@ -100,7 +100,7 @@ const constructTimeBlock = function (eachTimeBlock) {
   return timeBlockElement;
 };
 
-const renderTimeBlocks = function () {
+const renderTimeBlocks = () => {
   // map through key/value pairs array to construct time blocks
   const timeBlockElements = timeBlocks.map(constructTimeBlock).join("");
 
@@ -109,7 +109,7 @@ const renderTimeBlocks = function () {
 };
 
 // on save get/set storage
-const saveEvent = function (event) {
+const saveEvent = (event) => {
   //   declare timeblockdiv current target
   const currentTarget = event.currentTarget;
 
