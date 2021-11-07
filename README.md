@@ -4,7 +4,7 @@ To help manage time effectively, this responsive planner application displays th
 
 ## Deployed Application
 
-[GitHub Pages link](https://kayleriegerpatton.github.io/work-day-planner/)
+[GitHub Pages](https://kayleriegerpatton.github.io/work-day-planner/)
 
 ## User Story
 
