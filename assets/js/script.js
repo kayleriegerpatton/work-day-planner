@@ -69,7 +69,7 @@ const getEventText = (localStorageKey) => {
 
   // check if LS object contains LS key
 
-  if (eventDetailsFromLS === null) {
+  if (!eventDetailsFromLS) {
     // if doesn't exist, return empty string
     return "";
   } else {
@@ -94,7 +94,7 @@ const constructTimeBlock = (eachTimeBlock) => {
   // construct timeblock elements
   const timeBlockElement = `<div class="timeblock">
 <h2 class="hour">${timeLabel}</h2>
-<textarea class=${className}>${eventText}</textarea>
+<textarea class="textarea ${className}">${eventText}</textarea>
 <button class="saveBtn" id="${buttonID}">Save</button>
 </div>`;
 
@@ -111,9 +111,6 @@ const renderTimeBlocks = () => {
 
 // on save get/set storage
 const saveEvent = (event) => {
-  //   declare timeblockdiv current target
-  const currentTarget = event.currentTarget;
-
   // declare .saveBtn target
   const target = event.target;
 
