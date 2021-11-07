@@ -30,6 +30,12 @@ THEN the saved events remain in the time blocks
 - HTML
 - JavaScript
 
-## Screenshot
+## Screenshots
+
+### Desktop
 
 ![Day planner with color-coded event time blocks and descriptions](assets/images/screenshots/day-planner-screenshot.png)
+
+### Mobile
+
+![Day planner with color-coded event time blocks and descriptions](./assets/images/screenshots/day-planner-mobile.png)
