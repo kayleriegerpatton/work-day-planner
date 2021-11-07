@@ -30,6 +30,10 @@ THEN the saved events remain in the time blocks
 - HTML
 - JavaScript
 
+## Questions
+
+If you have any questions about this application, please contact me by [email](mailto:kayle.patton22@gmail.com).
+
 ## Screenshots
 
 ### Desktop
