@@ -23,6 +23,7 @@ const onReady = () => {
   renderDateTime();
   renderTimeBlocks();
 };
+
 //  get from local storage
 const initializeLS = () => {
   //   get from LS
